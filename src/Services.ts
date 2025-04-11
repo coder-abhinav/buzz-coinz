@@ -10,7 +10,9 @@ type AsyncFunction = (params: {
 }) => () => void;
 
 export const fetchPrices: AsyncFunction = ({ setLoading, setPrices }) => {
-  const ws = new WebSocket(import.meta.env.VITE_API_ENDPOINT_DEV);
+  const url = import.meta.env.VITE_WEB_SOCKET_API_ENDPOINT_DEV + "prices";
+
+  const ws = new WebSocket(url);
 
   ws.onmessage = (event) => {
     const message = JSON.parse(event.data);
